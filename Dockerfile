@@ -23,6 +23,7 @@ RUN pip install --upgrade pip && \
 COPY --chown=${USER} ./app.py app.py
 COPY --chown=${USER} ./models.py models.py
 COPY --chown=${USER} ./views.py views.py
+COPY --chown=${USER} ./templates templates
 
 USER ${USER}
 

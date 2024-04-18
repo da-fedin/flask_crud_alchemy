@@ -4,4 +4,6 @@
 # Exclude files/foldeers needed for docker
 !app.py
 !models.py
+!views.py
+!templates
 !requirements.txt
