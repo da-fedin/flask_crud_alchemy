@@ -4,15 +4,17 @@ from models import EmployeeModel
 
 def get_last_employee_id():  # :TODO: add clear and auto-fill commands
     # Query the maximum employee_id from the EmployeeModel table
-    max_employee_id = (
-        EmployeeModel.query.with_entities(EmployeeModel.employee_id)
-        .order_by(EmployeeModel.employee_id.desc())
-        .first()
-    )
+    employee_list = EmployeeModel.query.all()
 
-    # If there are no records in the table, return None
-    if not max_employee_id:
-        return None
+    if employee_list:
+        max_employee_id = (
+            EmployeeModel.query.with_entities(EmployeeModel.employee_id)
+            .order_by(EmployeeModel.employee_id.desc())
+            .first()
+        )
+
+    else:
+        max_employee_id = [0]
 
     # max_employee_id is a tuple, so extract the value from it
     last_employee_id = max_employee_id[0]
@@ -37,5 +39,7 @@ def get_new_employee(id_in_form=False) -> EmployeeModel:
     employee = EmployeeModel(
         employee_id=employee_id, name=name, age=age, position=position
     )
+
+    print(f"--- Employee {employee_id} ---")
 
     return employee
