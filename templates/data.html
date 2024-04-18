@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Data</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block content %}
     <h1>Record</h1>
     <h3>Id</h3>
     <p>{{employee.employee_id}}</p><hr>
@@ -14,5 +10,4 @@
     <p>{{employee.age}}</p><hr>
     <h3>Position</h3>
     <p>{{employee.position}}</p><hr>
-</body>
-</html>
+{% endblock %}
