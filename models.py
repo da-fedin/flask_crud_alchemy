@@ -24,4 +24,4 @@ class EmployeeModel(db.Model):
         self.position = position
 
     def __repr__(self):
-        return f"{self.name}:{self.employee_id}"
+        return f"{self.employee_id}: {self.name}, {self.age}, {self.position}"
