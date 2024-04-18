@@ -2,4 +2,6 @@
 
 {% block content %}
     <h1>Start Page</h1>
+    <!-- Button to redirect to the defined page -->
+    <a href="{{ url_for('views.retrieve_data_list') }}" class="button">Go to Data List</a>
 {% endblock %}
