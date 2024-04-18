@@ -33,39 +33,56 @@ def create():
         return redirect("/data")
 
 
-# Get data list
+# Get list of records
 @app.route("/data")
 def retrieve_data_list():
-    # Query all data in db as a list
+    # Query all records in db as a list
     employees = EmployeeModel.query.all()
 
     return render_template("data_list.html", employees=employees)
 
 
+# Show record
 @app.route("/data/<int:id>")
 def retrieve_employee(id):
+    # Filter record by employee id
     employee = EmployeeModel.query.filter_by(employee_id=id).first()
+
     if employee:
+        # If referred record exists
         return render_template("data.html", employee=employee)
+
     return f"Employee with id ={id} Does not exist"
 
 
+# Update record by employee id
 @app.route("/data/<int:id>/update", methods=["GET", "POST"])
 def update(id):
+    # Filter record by employee id
     employee = EmployeeModel.query.filter_by(employee_id=id).first()
+
     if request.method == "POST":
+        # If referred record exists
         if employee:
-            db.session.delete(employee)
+            db.session.delete(
+                employee
+            )  # :TODO: code duplicates, move to command
             db.session.commit()
             name = request.form["name"]
             age = request.form["age"]
             position = request.form["position"]
+
+            # Create employee instance
             employee = EmployeeModel(
                 employee_id=id, name=name, age=age, position=position
             )
+
+            # Add created instance to db
             db.session.add(employee)
             db.session.commit()
+
             return redirect(f"/data/{id}")
+
         return f"Employee with id = {id} Does nit exist"
 
     return render_template("update.html", employee=employee)
@@ -73,10 +90,13 @@ def update(id):
 
 @app.route("/data/<int:id>/delete", methods=["GET", "POST"])
 def delete(id):
+    # Filter record by employee id
     employee = EmployeeModel.query.filter_by(employee_id=id).first()
 
     if request.method == "POST":
+        # If referred record exists
         if employee:
+            # Delete record from db
             db.session.delete(employee)
             db.session.commit()
 
