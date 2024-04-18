@@ -2,9 +2,33 @@ from flask import request
 from models import EmployeeModel
 
 
-def get_new_employee() -> EmployeeModel:
+def get_last_employee_id():  # :TODO: add clear and auto-fill commands
+    # Query the maximum employee_id from the EmployeeModel table
+    max_employee_id = (
+        EmployeeModel.query.with_entities(EmployeeModel.employee_id)
+        .order_by(EmployeeModel.employee_id.desc())
+        .first()
+    )
+
+    # If there are no records in the table, return None
+    if not max_employee_id:
+        return None
+
+    # max_employee_id is a tuple, so extract the value from it
+    last_employee_id = max_employee_id[0]
+
+    return last_employee_id
+
+
+def get_new_employee(id_in_form=False) -> EmployeeModel:
     """Create a new employee"""
-    employee_id = request.form["employee_id"]
+    if id_in_form:
+        employee_id = request.form["employee_id"]
+
+    else:
+        last_employee_id = get_last_employee_id()
+        employee_id = last_employee_id + 1
+
     name = request.form["name"]
     age = request.form["age"]
     position = request.form["position"]

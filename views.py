@@ -16,16 +16,7 @@ def create():
 
     # Fill form to create record
     if request.method == "POST":
-        # employee_id = request.form["employee_id"]
-        # name = request.form["name"]
-        # age = request.form["age"]
-        # position = request.form["position"]
-        #
-        # # Create employee instance
-        # employee = EmployeeModel(
-        #     employee_id=employee_id, name=name, age=age, position=position
-        # )
-        employee = get_new_employee()
+        employee = get_new_employee(id_in_form=True)
 
         # Add created instance to db
         db.session.add(employee)
@@ -66,26 +57,19 @@ def update(id):
     if request.method == "POST":
         # If referred record exists
         if employee:
-            db.session.delete(
-                employee
-            )  # :TODO: code duplicates, move to command
+            db.session.delete(employee)
             db.session.commit()
-            name = request.form["name"]
-            age = request.form["age"]
-            position = request.form["position"]
 
             # Create employee instance
-            employee = EmployeeModel(
-                employee_id=id, name=name, age=age, position=position
-            )
+            employee = get_new_employee()
 
             # Add created instance to db
             db.session.add(employee)
             db.session.commit()
 
-            return redirect(f"/data/{id}")
+            return redirect(f"/data/{employee.employee_id}")
 
-        return f"Employee with id = {id} Does nit exist"
+        return f"Employee with id = {employee.employee_id} Does nit exist"
 
     return render_template("update.html", employee=employee)
 
