@@ -25,6 +25,7 @@ COPY --chown=${USER} ./models.py models.py
 COPY --chown=${USER} ./views.py views.py
 COPY --chown=${USER} ./templates templates
 COPY --chown=${USER} ./commands commands
+COPY --chown=${USER} ./static static
 
 USER ${USER}
 
