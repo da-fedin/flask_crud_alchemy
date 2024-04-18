@@ -6,4 +6,5 @@
 !models.py
 !views.py
 !templates
+!commands
 !requirements.txt

@@ -1,6 +1,7 @@
-from flask import Blueprint, render_template, request, redirect
+from flask import Blueprint, render_template, request, redirect, abort
 from models import EmployeeModel
 from app import db
+from commands import get_new_employee
 
 # Creating a blueprint (route collection)
 app = Blueprint("views", __name__)
@@ -15,15 +16,16 @@ def create():
 
     # Fill form to create record
     if request.method == "POST":
-        employee_id = request.form["employee_id"]
-        name = request.form["name"]
-        age = request.form["age"]
-        position = request.form["position"]
-
-        # Create employee instance
-        employee = EmployeeModel(
-            employee_id=employee_id, name=name, age=age, position=position
-        )
+        # employee_id = request.form["employee_id"]
+        # name = request.form["name"]
+        # age = request.form["age"]
+        # position = request.form["position"]
+        #
+        # # Create employee instance
+        # employee = EmployeeModel(
+        #     employee_id=employee_id, name=name, age=age, position=position
+        # )
+        employee = get_new_employee()
 
         # Add created instance to db
         db.session.add(employee)
@@ -101,6 +103,7 @@ def delete(id):
             db.session.commit()
 
             return redirect("/data")
-        # abort(404)    # :TODO: fix
+
+        abort(404)
 
     return render_template("delete.html")
