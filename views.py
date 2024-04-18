@@ -7,6 +7,12 @@ from commands import get_new_employee
 app = Blueprint("views", __name__)
 
 
+# Get list of records
+@app.route("/")
+def retrieve_start_page():
+    return render_template("start_page.html")
+
+
 # Create record
 @app.route("/data/create", methods=["GET", "POST"])
 def create():
