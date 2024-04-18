@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <title>
+      {% block title %}Flask crud{% endblock %}
+  </title>
+</head>
+
+<body>
+    <div>
+        <h1 style="color: blue;">Flask CRUD project</h1>
+        {% block menu %}{% endblock %}
+    </div>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+
+</html>
