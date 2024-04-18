@@ -17,9 +17,10 @@ app.register_blueprint(views_app)
 
 
 # Create DB file before the user accesses the server
-@app.before_first_request
-def create_table():
+# @app.before_first_request
+# def create_table():
+#     db.create_all()
+with app.app_context():
     db.create_all()
-
 
 app.run(host="localhost", port=5000)
