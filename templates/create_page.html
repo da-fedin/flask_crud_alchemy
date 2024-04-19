@@ -1,11 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <form action='' method = "POST">
-      <p>employee ID <input type = "number" name = "employee_id" /></p>
-      <p>name <input type = "text" name = "name" /></p>
-      <p>age <input type = "number" name = "age" /></p>
-      <p>position <input type = "text" name = "position" /></p>
-      <p><input type = "submit" value = "Submit" /></p>
-    </form>
+    <div>
+        <form action='' method = "POST">
+          <p>employee ID <input type = "number" name = "employee_id" /></p>
+          <p>name <input type = "text" name = "name" /></p>
+          <p>age <input type = "number" name = "age" /></p>
+          <p>position <input type = "text" name = "position" /></p>
+          <p><input type = "submit" value = "Submit" /></p>
+        </form>
+    </div>
+    <div>
+        <a href="{{ request.referrer }}">
+            <button>Go Back</button>
+        </a>
+    </div>
 {% endblock %}
