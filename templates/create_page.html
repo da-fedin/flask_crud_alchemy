@@ -2,6 +2,9 @@
 
 {% block content %}
     <div>
+        <h2>List Of Records</h2>
+    </div>
+    <div>
         <form action='' method = "POST">
           <p>employee ID <input type = "number" name = "employee_id" /></p>
           <p>name <input type = "text" name = "name" /></p>
@@ -12,7 +15,7 @@
     </div>
     <div>
         <a href="{{ request.referrer }}">
-            <button>Go Back</button>
+            <button>Cancel</button>
         </a>
     </div>
 {% endblock %}

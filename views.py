@@ -44,7 +44,7 @@ def retrieve_data_list():
 
 
 # Show record
-@app.route("/data/<int:id>")
+@app.route("/data/<int:id>")  # :TODO: add button to each item in list
 def retrieve_employee(id):
     # Filter record by employee id
     employee = EmployeeModel.query.filter_by(employee_id=id).first()

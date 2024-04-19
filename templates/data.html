@@ -1,13 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Record</h1>
-    <h3>Id</h3>
-    <p>{{employee.employee_id}}</p><hr>
-    <h3>Name</h3>
-    <p>{{employee.name}}</p><hr>
-    <h3>Age</h3>
-    <p>{{employee.age}}</p><hr>
-    <h3>Position</h3>
-    <p>{{employee.position}}</p><hr>
+    <div>
+        <h2>Record</h2>
+    </div>
+    <div>
+        <h3>Id</h3>
+        <p>{{employee.employee_id}}</p><hr>
+        <h3>Name</h3>
+        <p>{{employee.name}}</p><hr>
+        <h3>Age</h3>
+        <p>{{employee.age}}</p><hr>
+        <h3>Position</h3>
+        <p>{{employee.position}}</p><hr>
+    </div>
+    <div>
+        <a href="{{ request.referrer }}">
+            <button>Back</button>
+        </a>
+    </div>
 {% endblock %}

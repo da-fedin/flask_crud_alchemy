@@ -10,7 +10,11 @@
     </div>
     <div>
         {% for employee in employees %}
-            <h3>{{ employee }}</h3>
+            <h3>
+                {{ employee }}
+                <a href="{{ url_for('views.retrieve_employee', id=employee.employee_id) }}" class="button">Show</a>
+                <a href="{{ url_for('views.delete', id=employee.employee_id) }}" class="button">Delete</a>
+            </h3>
         {% endfor %}
     </div>
 {% endblock %}
