@@ -12,8 +12,8 @@ class EmployeeModel(db.Model):
 
     # Define columns
     id = db.Column(db.Integer, primary_key=True)
-    employee_id = db.Column(db.Integer(), unique=True)
-    name = db.Column(db.String())
+    employee_id = db.Column(db.Integer(), unique=True, nullable=False)
+    name = db.Column(db.String(), nullable=False)
     age = db.Column(db.Integer())
     position = db.Column(db.String(80))
 
@@ -25,3 +25,17 @@ class EmployeeModel(db.Model):
 
     def __repr__(self):
         return f"{self.employee_id}: {self.name}, {self.age}, {self.position}"
+
+    @db.validates("employee_id")
+    def validate_employee_id(self, key, value):
+        if not isinstance(value, int):
+            raise ValueError("Value must be an integer")
+
+        return value
+
+    @db.validates("age")
+    def validate_employee_age(self, key, value):
+        if not isinstance(value, int):
+            raise ValueError("Value must be an integer")
+
+        return value

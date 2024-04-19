@@ -3,6 +3,7 @@ import os
 from flask import Flask
 from models import db
 from views import app as views_app
+from commands import initialize_services
 
 # Initialize the flask app
 app = Flask(__name__)
@@ -20,6 +21,15 @@ app.register_blueprint(views_app)
 
 with app.app_context():
     db.create_all()
+
+
+@app.before_request
+def initialize_app() -> None:
+    # Perform initialization tasks here
+    print("Flask app is starting up")
+
+    initialize_services()
+
 
 if __name__ == "__main__":
     app.run(debug=True)

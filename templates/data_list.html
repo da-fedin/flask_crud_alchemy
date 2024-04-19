@@ -1,8 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>List Of Records</h2>
-    {% for employee in employees %}
-        <h3>{{ employee }}</h3>
-    {% endfor %}
+    <div>
+        <h2>List Of Records</h2>
+    </div>
+    <div>
+        {% for employee in employees %}
+            <h3>{{ employee }}</h3>
+        {% endfor %}
+    </div>
+    <div style="margin-right: 10px;">
+        <a href="{{ url_for('views.retrieve_start_page') }}" class="button">Back to Start Page</a>
+        <a href="{{ url_for('views.create') }}" class="button">Create record</a>
+    </div>
 {% endblock %}

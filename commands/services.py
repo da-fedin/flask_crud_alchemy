@@ -1,5 +1,30 @@
 from flask import request
-from models import EmployeeModel
+from models import EmployeeModel, db
+
+
+def initialize_services() -> None:
+    clear_database()
+
+    create_director()
+
+
+def clear_database():
+    # Delete all records from the User table
+    db.session.query(EmployeeModel).delete()
+
+    db.session.commit()
+
+
+def create_director():
+    employee = EmployeeModel(
+        employee_id=1, name="Me", age=44, position="Director"
+    )
+
+    db.session.add(employee)
+
+    db.session.commit()
+
+    return employee
 
 
 def get_last_employee_id():  # :TODO: add clear and auto-fill commands
