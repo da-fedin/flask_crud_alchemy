@@ -23,10 +23,14 @@ with app.app_context():
     db.create_all()
 
 
-@app.before_request
+# Perform initial operations over database
+@app.before_request  # Should execute each request, but ...
 def initialize_app() -> None:
     # Perform initialization tasks here
-    print("Flask app is starting up")
+    print("Flask app is starting up ...")
+
+    # ... remove handler, making it only run on the first request
+    app.before_request_funcs[None].remove(initialize_app)
 
     initialize_services()
 

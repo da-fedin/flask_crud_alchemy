@@ -28,6 +28,8 @@ def create():
         db.session.add(employee)
         db.session.commit()
 
+        print("New employee added ...")
+
         # Redirect user to data page
         return redirect("/data")
 

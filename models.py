@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import validates
 
 # Create hub for database operations within the application
 db = SQLAlchemy()
@@ -26,14 +27,14 @@ class EmployeeModel(db.Model):
     def __repr__(self):
         return f"{self.employee_id}: {self.name}, {self.age}, {self.position}"
 
-    @db.validates("employee_id")
+    @validates("employee_id")
     def validate_employee_id(self, key, value):
         if not isinstance(value, int):
             raise ValueError("Value must be an integer")
 
         return value
 
-    @db.validates("age")
+    @validates("age")
     def validate_employee_age(self, key, value):
         if not isinstance(value, int):
             raise ValueError("Value must be an integer")

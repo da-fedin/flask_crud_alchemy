@@ -3,6 +3,7 @@
 flask==3.0.3
 # Python SQL toolkit and Object Relational Mapper
 Flask-SQLAlchemy==3.1.1
+SQLAlchemy==2.0.29
 
 # [code_style]-[BEGIN]
 # Pre-commit hook.

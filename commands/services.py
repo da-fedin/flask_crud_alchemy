@@ -14,6 +14,8 @@ def clear_database():
 
     db.session.commit()
 
+    print("Database cleared ...")
+
 
 def create_director():
     employee = EmployeeModel(
@@ -23,6 +25,8 @@ def create_director():
     db.session.add(employee)
 
     db.session.commit()
+
+    print("Director created ...")
 
     return employee
 
@@ -62,9 +66,9 @@ def get_new_employee(id_in_form=False) -> EmployeeModel:
 
     # Create employee instance
     employee = EmployeeModel(
-        employee_id=employee_id, name=name, age=age, position=position
+        employee_id=int(employee_id), name=name, age=int(age), position=position
     )
 
-    print(f"--- Employee {employee_id} ---")
+    print(f" Employee {employee_id} created ...")
 
     return employee
